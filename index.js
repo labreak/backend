@@ -19,6 +19,7 @@ app.use(cors())
 app.use(express.json());
 //con este middleware le digo que todo lo que entre en api/auth siga la logica de rutas de auth.js
 app.use('/api/auth',require('./routes/auth'));
+app.use('/api/events',require('./routes/events'));
 
 
 
