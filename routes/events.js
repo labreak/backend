@@ -9,15 +9,15 @@ const {validarJWT}=require('../middlewares/validar-jwt')
 
 
 //todas tienen que esta validad.
+router.use(validarJWT);
 
 
+router.get('/', getEventos)
 
-router.get('/',validarJWT, getEventos)
+router.post('/',crearEvento);
 
-router.post('/',validarJWT,crearEvento);
+router.put('/:id',actualizarEvento);
 
-router.put('/:id',validarJWT,actualizarEvento);
-
-router.delete('/:id',validarJWT,eliminarEvento)
+router.delete('/:id',eliminarEvento)
 
 module.exports=router;

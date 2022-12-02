@@ -5,7 +5,6 @@ const{response}=require('express');
 
 
 
-
 const getEventos=async(req,res=response)=>{
 
    
