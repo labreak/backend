@@ -1,12 +1,14 @@
 
 //importo aca response express y se lo asigno a res para tener las ayudas al trabajar.
 const{response}=require('express');
+const Evento=require('../models/Evento')
 
 
 
 
 const getEventos=async(req,res=response)=>{
 
+    
    
  
  
@@ -23,13 +25,30 @@ const getEventos=async(req,res=response)=>{
 
 const crearEvento= async (req,res=response)=>{
 
-   
+    const evento= new Evento(req.body);
 
 
-    res.status(202).json({
+
+
+    try {
+        evento.user=req.uid;
+   const eventoGuardado= await evento.save();
+
+     res.json({
         ok:true,
-        msg:'CrearEvento'
-    });
+        eventoGuardado
+     })
+     
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok:false,
+            msg:"hable con su administrador"
+        })
+    }
+
+
+  
 
 
  
